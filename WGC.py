@@ -12,7 +12,6 @@ initValuesW = np.array([0.2457, 0.1640])
 kAxis = np.arange(-kpos, kpos+1)
 
 T = np.zeros([n, 2])
-T2 = np.zeros([n, 2])
 autCorrT = np.zeros([kpos*2+1, 2])
 autCorrW = np.zeros([kpos*2+1, 2])
 
