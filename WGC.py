@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 
 
 initValues = np.array([0.1218, 0.3499])
-n = 5000
-kpos = 100
+n = 500
+kpos = 10
 sigma2 = 0.1
 initValuesW = np.array([0.2457, 0.1640])
 
