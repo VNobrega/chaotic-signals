@@ -19,11 +19,8 @@ autCorrW = np.zeros([kpos*2+1, 2])
 
 
 def tent(old):
-    if(old < 0.5):
-        new = 2*old
-    else:
-        new = 2*(1-old)
-    return new + 1e-15*np.random.randn()
+    return np.where(old < 0.5, 2 * old, 2 * (1 - old))
+
 
 def genT(initValues, n):
     T = np.zeros([n,2])
@@ -71,19 +68,47 @@ def genW(initValues, sigma2, n):
     return W
 
 
+
+def randomArray(n):
+    W = np.zeros([n])
+    for i in range (n):
+        W[i] = np.random.randn()
+
+
 T = genT(initValues, n)
-
-
 W = genW(initValuesW, sigma2, n)
+
+
+plt.hist(np.random.randn(n))
+plt.title("Gaussian")
+plt.xlim(-3, 3)
+
+fig, histT = plt.subplots(1, 2)  
+histT[0].hist(T[:,0])
+histT[1].hist(T[:,1])
+plt.xlim(-3, 3)
+histT[0].set_title("Histogram Y1")
+histT[1].set_title("Histogram Y2")
+
+
+
+fig, histW = plt.subplots(1, 2)
+histW[0].hist(W[:,0])
+histW[1].hist(W[:,1])
+plt.xlim(-3, 3)
+histW[0].set_title("Histogram X1")
+histW[1].set_title("Histogram X2")
+
+plt.show()
 
 
 
 fig, signalT = plt.subplots(1, 2)
-signalT[0].plot(T[:, 0])
+signalT[0].stem(T[:, 0])
 signalT[0].set_title("Y1")
 signalT[0].set_xlabel("n")
 signalT[0].set_ylabel("y")
-signalT[1].plot(T[:, 1])
+signalT[1].stem(T[:, 1])
 signalT[1].set_title("Y2")
 signalT[1].set_xlabel("n")
 signalT[1].set_ylabel("y")
@@ -91,8 +116,8 @@ signalT[1].set_ylabel("y")
 fig, signalTAuto = plt.subplots(1,2)
 autCorrT[:, 0] = autocorrelation(T[:,0], kpos)
 autCorrT[:, 1] = autocorrelation(T[:,1], kpos)
-signalTAuto[0].plot(kAxis, autCorrT[:, 0])
-signalTAuto[1].plot(kAxis, autCorrT[:, 1])
+signalTAuto[0].stem(kAxis, autCorrT[:, 0])
+signalTAuto[1].stem(kAxis, autCorrT[:, 1])
 signalTAuto[0].set_ylabel("Ry1y1")
 signalTAuto[1].set_ylabel("Ry2y2")
 signalTAuto[0].set_xlabel("k")
@@ -101,11 +126,11 @@ signalTAuto[1].set_xlabel("k")
 
 
 fig, signalW = plt.subplots(1, 2)
-signalW[0].plot(W[:,0])
+signalW[0].stem(W[:,0])
 signalW[0].set_title("X1")
 signalW[0].set_xlabel("n")
 signalW[0].set_ylabel("x")
-signalW[1].plot(W[:,1])
+signalW[1].stem(W[:,1])
 signalW[1].set_title("X2")
 signalW[1].set_xlabel("n")
 signalW[1].set_ylabel("x")
@@ -113,8 +138,8 @@ signalW[1].set_ylabel("x")
 fig, signalWAuto = plt.subplots(1,2)
 autCorrW[:, 0] = autocorrelation(W[:,0], kpos)
 autCorrW[:, 1] = autocorrelation(W[:,1], kpos)
-signalWAuto[0].plot(kAxis, autCorrW[:, 0])
-signalWAuto[1].plot(kAxis, autCorrW[:, 1])
+signalWAuto[0].stem(kAxis, autCorrW[:, 0])
+signalWAuto[1].stem(kAxis, autCorrW[:, 1])
 signalWAuto[0].set_ylabel("Rx1x1")
 signalWAuto[1].set_ylabel("Rx2x2")
 signalWAuto[0].set_xlabel("k")
@@ -123,3 +148,4 @@ signalWAuto[1].set_xlabel("k")
 
 
 plt.show()
+
