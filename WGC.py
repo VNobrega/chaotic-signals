@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 initValues = np.array([0.1218, 0.3499])
 n = 500
 kpos = 10
-sigma2 = 0.1
+sigma2 = 1
 initValuesW = np.array([0.2457, 0.1640])
 
 
@@ -19,7 +19,7 @@ autCorrW = np.zeros([kpos*2+1, 2])
 
 
 def tent(old):
-    return np.where(old < 0.5, 2 * old, 2 * (1 - old))
+    return np.where(old < 0.5, 2 * old, 2 * (1 - old)) 
 
 
 def genT(initValues, n):
@@ -34,7 +34,7 @@ def genT(initValues, n):
 def autocorrelation(series, kpos):
     r = np.zeros([kpos+1])
     r_total = np.zeros([kpos*2+1])
-    for i in range(kpos+1):
+    for i in range(kpos+1): 
         for j in range (len(series)-i):
             r[i]+=series[j]*series[j+i]
         r[i] = r[i]/(len(series)-i)        
@@ -66,13 +66,6 @@ def genW(initValues, sigma2, n):
         R_next = np.array([tent(R[0]), tent(R[1])])
         W[i+1, :] = Gtransform(R_next.reshape(1,2), sigma2)
     return W
-
-
-
-def randomArray(n):
-    W = np.zeros([n])
-    for i in range (n):
-        W[i] = np.random.randn()
 
 
 T = genT(initValues, n)
@@ -148,4 +141,3 @@ signalWAuto[1].set_xlabel("k")
 
 
 plt.show()
-
