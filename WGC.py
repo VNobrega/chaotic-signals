@@ -4,10 +4,6 @@ from scipy.stats import norm
 
 n = 10000
 sigma2 = 0.1
-
-initValuesT = np.array([0.1218, 0.3499])
-initValuesW = np.array([0.2457, 0.1640])
-
 lags = 10
 
 
@@ -71,8 +67,8 @@ def genW(initValues, sigma2, n):
     return W
 
 
-W = genW(initValuesW, sigma2, n)
-T =  genT(initValuesT, n)
+W = genW(np.random.rand(2), sigma2, n)
+T =  genT(np.random.rand(2), n)
 
 
 fig, ax = plt.subplots(3, 2, figsize=(10,8))
