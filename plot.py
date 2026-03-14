@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from scipy.stats import norm
 
 n = 10000
-sigma2 = 0.1
+sigma2 = 1
 lags = 10
 W = WGC.genW(np.random.rand(2), sigma2, n)
 T =  WGC.genT(np.random.rand(2), n)
@@ -101,6 +101,6 @@ ax_rand.plot(eixo, norm.pdf(eixo, loc=0, scale=1), 'r-', lw=2)
 
 plt.tight_layout()
 
-plt.show()
+
 
 

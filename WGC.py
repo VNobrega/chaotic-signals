@@ -7,6 +7,7 @@ def tent(x_u):
     xquadratic = (1-np.cos(np.pi*x_u))/2
     xquadraticnovo = 4*xquadratic*(1-xquadratic)
     xnovo = np.arccos(1-2*xquadraticnovo)/np.pi
+    #xnovo = np.where(x_u < 0.5, 2*x_u, 2*(1-x_u))+np.random.rand()*1e-15
     return xnovo
 
 def atan2_0_to_2pi(y, x):
