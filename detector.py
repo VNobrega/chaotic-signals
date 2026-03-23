@@ -13,7 +13,7 @@ surrogates = []
 
 
 
-for _ in range(100000):
+for _ in range(100):
     noise = np.random.randn(plotfile.n)
     surrogates.append(time_reversibility_stat(noise))
 
