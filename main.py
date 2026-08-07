@@ -43,7 +43,7 @@ surrogate_sd = np.std(surrogates, ddof=1)
 z = np.array([(signal_rev[0]-surrogates_mean)/surrogate_sd,(signal_rev[1]-surrogates_mean)/surrogate_sd])
 p_value = 2*(1 - norm.cdf(abs(z)))
 
-print("Resultados baseados no terceiro momento:")
+print("third moment:")
 print("noise_mean third moment: {:.5f}".format(surrogates_mean))
 print("noise_std third moment: {:.5f}".format(surrogate_sd))
 print("signal  third moment: {:.5f}".format(signal_rev[0]),",{:.5f}".format(signal_rev[1]))
