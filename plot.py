@@ -108,20 +108,5 @@ ax[2,1].set_xlabel("k")
 plt.tight_layout()
 
 
-'''
-rand_vec = np.random.randn(n)
-
-fig_rand, ax_rand = plt.subplots(figsize=(6,4))
-
-ax_rand.hist(rand_vec, density=True, bins='fd')
-ax_rand.set_title("Histogram randn")
-ax_rand.set_xlim(-3,3)
-eixo = np.linspace(-3,3,1000)
-ax_rand.plot(eixo, norm.pdf(eixo, loc=0, scale=1), 'r-', lw=2)
-
-plt.tight_layout()
-'''
-
-
 plt.subplots_adjust(hspace=1)
 plt.show()

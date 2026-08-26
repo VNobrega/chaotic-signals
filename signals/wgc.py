@@ -23,15 +23,15 @@ def genT(initValues, n):
         T[1,i+1] = tent(T[1,i]) 
     return T
 
-def autocorrelation(series, lags):
-    r = np.zeros([lags+1])
-    r_total = np.zeros([lags*2+1])
-    for i in range(lags+1): 
-        for j in range (len(series)-i):
-            r[i]+=series[j]*series[j+i]
-        r[i] = r[i]/(len(series)-i)        
-    r_total = np.concatenate((r[:0:-1], r))
-    return r_total
+def autocorrelation(series, k):
+    series = series - np.mean(series)
+    r = np.correlate(series, series, mode='full')
+    N = len(series)
+    r = r[N-1-k:N+k]
+    r = r / r[k]
+    return r
+
+
 
 def Gtransform(series, sigma2):
     r = np.sqrt(2*sigma2*np.log(1/(1-series[0])))
